@@ -18,7 +18,6 @@ async def _(event):
         return
     while True:
         DMY = time.strftime("%d.%m.%y")
-        HMS = time.strftime("%H:%M:%S")
         name = f"{HMS}🔥The Wizard🔥{DMY}"
         logger.info(name)
         try:
