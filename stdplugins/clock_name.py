@@ -18,7 +18,7 @@ async def _(event):
         return
     while True:
         DMY = time.strftime("%d.%m.%y")
-        HMS = time.strftime("%h:%M")
+        HMS = time.strftime("%H:%M")
         name = f"{HMS}🌿Solo Traveler🌱📅{DMY}"
         logger.info(name)
         try:
