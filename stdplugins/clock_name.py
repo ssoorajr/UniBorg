@@ -17,7 +17,7 @@ async def _(event):
     if event.fwd_from:
         return
     while True:
-        DMY = time.strftime("%d.%m")
+        DMY = time.strftime("%d.%m.%y")
         HM = time.strftime("%H:%M")
         name = f"{HM}, {DMY}"
         logger.info(name)
