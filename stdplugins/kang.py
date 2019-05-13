@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 
-""" Userbot module for kanging stickers or making new ones. """
+""" Uniborg module for kanging stickers or making new ones. """
 
 import io
 import math
@@ -12,7 +12,7 @@ import urllib.request
 
 from PIL import Image
 from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
-from userbot import bot, HELPER
+from uniborg import bot, HELPER
 from userbot.events import register
 
 
@@ -92,13 +92,13 @@ async def kang(args):
                     # Ensure user doesn't get spamming notifications
                     await bot.send_read_acknowledge(conv.chat_id)
             else:
-                await args.edit("Userbot sticker pack doesn't exist! Making a new one!")
+                await args.edit("Uniborg sticker pack doesn't exist! Making a new one!")
                 async with bot.conversation('Stickers') as conv:
                     await conv.send_message('/newpack')
                     await conv.get_response()
                     # Ensure user doesn't get spamming notifications
                     await bot.send_read_acknowledge(conv.chat_id)
-                    await conv.send_message(f"@{user.username}'s userbot pack {pack}")
+                    await conv.send_message(f"@{user.username}'s uniborg pack {pack}")
                     await conv.get_response()
                     # Ensure user doesn't get spamming notifications
                     await bot.send_read_acknowledge(conv.chat_id)
@@ -156,7 +156,7 @@ async def resize_photo(photo):
 
 HELPER.update({
     "kang": ".kang\
-\nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
+\nUsage: Reply .kang to a sticker or an image to kang it to your uniborg pack.\
 \n\n.kang [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
 \n\n.kang [number]\
