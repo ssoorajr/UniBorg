@@ -10,7 +10,7 @@ from telethon.errors import FloodWaitError
 from uniborg.util import admin_cmd
 
 
-DEL_TIME_OUT = 120
+DEL_TIME_OUT = 300
 
 
 @borg.on(admin_cmd("autobio"))  # pylint:disable=E0602
