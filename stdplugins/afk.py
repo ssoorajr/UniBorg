@@ -17,7 +17,7 @@ borg.storage.recvd_messages = {}  # pylint:disable=E0602
 @borg.on(events.NewMessage(outgoing=True))  # pylint:disable=E0602
 async def set_not_afk(event):
     current_message = event.message.message
-    if Config.COMMAND_HAND_LER + "afk" not in current_message and "yes" in borg.storage.USER_AFK:  # pylint:disable=E0602
+    if ".afk" not in current_message and "yes" in borg.storage.USER_AFK:  # pylint:disable=E0602
         borg.storage.USER_AFK = {}  # pylint:disable=E0602
         borg.storage.afk_time = None  # pylint:disable=E0602
         # pylint:disable=E0602
@@ -30,13 +30,15 @@ async def set_not_afk(event):
             current_message = borg.storage.recvd_messages[chat_id]
             user_id = current_message.from_id
             message_id = current_message.id
+            # check_condition = str(chat_id).startswith("-")
+            # chat_id, _ = resolve_id(chat_id)
+            # https://t.me/DeepLink/21
+            # if not check_condition:
+            #     recvd_messages += "👉 tg://openmessage?chat_id={}&message_id={} \n".format(chat_id, message_id)
+            # else:
+            #     recvd_messages += "👉 https://t.me/c/{}/{} \n\n".format(chat_id, message_id)
             chat_id, _ = resolve_id(chat_id)
-            if isinstance(_, types.PeerUser):
-                recvd_messages += f"👉 [{chat_id}](tg://user?id={chat_id})"
-                # sadly, there is no way to goto a particular message by a user,
-                # after the 5.5 Android update
-            else:
-                recvd_messages += f"👉 https://t.me/c/{chat_id}/{message_id} \n"
+            recvd_messages += "👉 tg://openmessage?chat_id={}&message_id={} \n".format(chat_id, message_id)
         try:
             if recvd_messages != "You received the following messages: \n":
                 await borg.send_message(  # pylint:disable=E0602
@@ -138,10 +140,10 @@ async def on_afk(event):
             else:
                 afk_since = f"`{int(seconds)}s` **ago**"
         msg = None
-        message_to_reply = f"I'm afk since {afk_since} " + \
+        message_to_reply = f"I'm offline since {afk_since} " + \
             f"and I will be back soon\n__Reason:__ {reason}" \
             if reason \
-            else f"I'm afk since {afk_since} and I will be back soon."
+            else f"I'm offline since {afk_since} and I will be back soon."
         msg = await event.reply(message_to_reply)
         if event.chat_id in borg.storage.last_afk_message:  # pylint:disable=E0602
             await borg.storage.last_afk_message[event.chat_id].delete()  # pylint:disable=E0602
