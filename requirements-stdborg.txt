@@ -1,7 +1,9 @@
+aiofiles
 aiohttp
 beautifulsoup4
 cfscrape
 cryptg
+emoji
 googletrans
 google_images_download
 gsearch
@@ -9,6 +11,7 @@ gtts
 hachoir
 Pillow
 psycopg2
+python-magic
 regex
 requests
 speedtest-cli
@@ -18,4 +21,3 @@ urbandict
 wikipedia
 youtube-dl
 git+https://github.com/ahupp/python-magic
-aiofiles
